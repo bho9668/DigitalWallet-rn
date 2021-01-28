@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "digitalWallet-rn",
-    "slug": "digitalWallet-rn",
+    "name": "DigitalWallet-rn",
+    "slug": "DigitalWallet-rn",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
