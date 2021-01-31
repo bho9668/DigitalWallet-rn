@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useFonts } from 'expo-font';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 
@@ -19,6 +20,20 @@ const theme = {
 const Stack = createStackNavigator();
 
 export default function App() {
+	const [fontsLoaded] = useFonts({
+		'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
+		'Roboto-Black': require('./assets/fonts/Roboto-Black.ttf'),
+		'Roboto-Bold': require('./assets/fonts/Roboto-Bold.ttf'),
+	});
+
+	if (!fontsLoaded) {
+		return (
+			<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+				<Text>Loading...</Text>
+			</View>
+		);
+	}
+
 	return (
 		<NavigationContainer theme={theme}>
 			<Stack.Navigator

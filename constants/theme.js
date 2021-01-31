@@ -1,7 +1,14 @@
-import { Dimension } from 'react-native';
+import { Dimensions } from 'react-native';
+
 
 // getting window width and hight
-const { width, height } = Dimension.get('window');
+const { width, height } = Dimensions.get('window');
+
+// const loadFonts = () => {
+
+// 	return fontsLoaded;
+// };
+
 
 export const COLORS = {
 	// base colors
@@ -60,7 +67,7 @@ export const SIZES = {
 
 export const FONTS = {
 	largeTitle: {
-		fontFamily: 'Roboto-regular',
+		fontFamily: 'Roboto-Regular',
 		fontSize: SIZES.largetitle,
 		lineHight: 38,
 	},

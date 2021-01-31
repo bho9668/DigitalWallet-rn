@@ -13,7 +13,7 @@ import {
 	TouchableWithoutFeedback,
 } from 'react-native';
 
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import { icons, images, COLORS, SIZES, FONTS } from '../constants';
 
@@ -26,12 +26,14 @@ const SignUp = () => {
 
 	// useEffect code runs here for fething country codes
 	useEffect(() => {
-		fetch('https://restcountries.eu/rest/v2/all')
+		fetch('https://restcountries.eu/rest/v2/all', {
+			method: 'GET',
+			mode: 'cors',
+		})
 			.then((response) => {
-				response.json();
+				return response.json();
 			})
 			.then((data) => {
-				// console.log(data);
 				let areaData = data.map((item) => {
 					return {
 						code: item.alpha2Code,
@@ -49,38 +51,43 @@ const SignUp = () => {
 						setSelectedArea(defaultData[0]);
 					}
 				}
-			});
+			})
+			.catch((error) =>
+				console.warn(`Error occured could not load data ${error.message}`)
+			);
 	}, []);
 
 	// render functions
 	const renderHeader = () => {
 		return (
-			<TouchableOpacity
-				style={{
-					flexDirection: 'row',
-					alignItems: 'center',
-					marginTop: SIZES.padding * 6,
-					paddingHorizontal: SIZES.padding * 2,
-				}}
-				onPress={() => {
-					console.log('signUP');
-				}}
-			>
-				<Image
-					source={icons.back}
-					resizeMode="contain"
-					style={{ width: 20, height: 20, tintColor: COLORS.white }}
-				/>
-				<Text
+			<>
+				<TouchableOpacity
 					style={{
-						marginLeft: SIZES.padding * 1.5,
-						color: COLORS.white,
-						...FONTS.h4,
+						flexDirection: 'row',
+						alignItems: 'center',
+						marginTop: SIZES.padding * 6,
+						paddingHorizontal: SIZES.padding * 2,
+					}}
+					onPress={() => {
+						console.log('signUP');
 					}}
 				>
-					SignUp
-				</Text>
-			</TouchableOpacity>
+					<Image
+						source={icons.back}
+						resizeMode="contain"
+						style={{ width: 20, height: 20, tintColor: COLORS.white }}
+					/>
+					<Text
+						style={{
+							marginLeft: SIZES.padding * 1.5,
+							color: COLORS.white,
+							...FONTS.h4,
+						}}
+					>
+						SignUp
+					</Text>
+				</TouchableOpacity>
+			</>
 		);
 	};
 
@@ -99,6 +106,7 @@ const SignUp = () => {
 					resizeMode="contain"
 					style={{
 						width: '60%',
+						height: '100%',
 					}}
 				/>
 			</View>
@@ -198,6 +206,8 @@ const SignUp = () => {
 								...FONTS.body3,
 							}}
 							placeholder="Enter Phone Number"
+							keyboardType="phone-pad"
+							maxLength={10}
 							placeholderTextColor={COLORS.white}
 							selectionColor={COLORS.white}
 						/>
@@ -253,7 +263,7 @@ const SignUp = () => {
 						backgroundColor: COLORS.black,
 						borderRadius: SIZES.radius / 1.5,
 						alignItems: 'center',
-						justifyContent: ' center',
+						justifyContent: 'center',
 					}}
 					onPress={() => {
 						console.log('Navigate to home');
@@ -297,7 +307,11 @@ const SignUp = () => {
 					}}
 				>
 					<View
-						style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+						style={{
+							flex: 1,
+							alignItems: 'center',
+							justifyContent: 'center',
+						}}
 					>
 						<View
 							style={{
@@ -326,7 +340,8 @@ const SignUp = () => {
 
 	return (
 		<KeyboardAvoidingView
-			behavior={Platform.OS === 'ios' ? 'padding' : null}
+			// runs on android device but not in web ?
+			// behavior={Platform.OS === 'ios' ? 'padding' : null}
 			style={{ flex: 1 }}
 		>
 			<LinearGradient
