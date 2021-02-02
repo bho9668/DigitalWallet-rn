@@ -1,6 +1,5 @@
 import { Dimensions } from 'react-native';
 
-
 // getting window width and hight
 const { width, height } = Dimensions.get('window');
 
@@ -8,7 +7,6 @@ const { width, height } = Dimensions.get('window');
 
 // 	return fontsLoaded;
 // };
-
 
 export const COLORS = {
 	// base colors
@@ -69,52 +67,52 @@ export const FONTS = {
 	largeTitle: {
 		fontFamily: 'Roboto-Regular',
 		fontSize: SIZES.largetitle,
-		lineHight: 38,
+		lineHeight: 38,
 	},
 	h1: {
 		fontFamily: 'Roboto-Black',
 		fontSize: SIZES.h1,
-		lineHight: 36,
+		lineHeight: 36,
 	},
 	h2: {
 		fontFamily: 'Roboto-Bold',
 		fontSize: SIZES.h2,
-		lineHight: 30,
+		lineHeight: 30,
 	},
 	h3: {
 		fontFamily: 'Roboto-Bold',
 		fontSize: SIZES.h3,
-		lineHight: 22,
+		lineHeight: 22,
 	},
 	h4: {
 		fontFamily: 'Roboto-Bold',
 		fontSize: SIZES.h4,
-		lineHight: 22,
+		lineHeight: 22,
 	},
 	body1: {
 		fontFamily: 'Roboto-Regular',
 		fontSize: SIZES.body1,
-		lineHight: 36,
+		lineHeight: 36,
 	},
 	body2: {
 		fontFamily: 'Roboto-Regular',
 		fontSize: SIZES.body2,
-		lineHight: 30,
+		lineHeight: 30,
 	},
 	body3: {
 		fontFamily: 'Roboto-Regular',
 		fontSize: SIZES.body3,
-		lineHight: 22,
+		lineHeight: 22,
 	},
 	body4: {
 		fontFamily: 'Roboto-Regular',
 		fontSize: SIZES.body4,
-		lineHight: 22,
+		lineHeight: 22,
 	},
 	body5: {
 		fontFamily: 'Roboto-Regular',
 		fontSize: SIZES.body5,
-		lineHight: 22,
+		lineHeight: 22,
 	},
 };
 

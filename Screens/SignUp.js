@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-	// StyleSheet,
 	Text,
 	View,
 	Image,
@@ -12,12 +11,14 @@ import {
 	KeyboardAvoidingView,
 	TouchableWithoutFeedback,
 } from 'react-native';
-
+import Constants from 'expo-constants';
 import { LinearGradient } from 'expo-linear-gradient';
 
+// custome constants
 import { icons, images, COLORS, SIZES, FONTS } from '../constants';
 
-const SignUp = () => {
+// main signup render function
+const SignUp = ({ navigation }) => {
 	// states
 	const [showPassword, setShowPassword] = useState(false);
 	const [areas, setAreas] = useState([]);
@@ -26,6 +27,7 @@ const SignUp = () => {
 
 	// useEffect code runs here for fething country codes
 	useEffect(() => {
+		//fetch does not working with without http header returning error
 		fetch('https://restcountries.eu/rest/v2/all', {
 			method: 'GET',
 			mode: 'cors',
@@ -266,7 +268,7 @@ const SignUp = () => {
 						justifyContent: 'center',
 					}}
 					onPress={() => {
-						console.log('Navigate to home');
+						navigation.navigate('Home');
 					}}
 				>
 					<Text style={{ color: COLORS.white, ...FONTS.h3 }}>Continue</Text>
@@ -341,7 +343,7 @@ const SignUp = () => {
 	return (
 		<KeyboardAvoidingView
 			// runs on android device but not in web ?
-			// behavior={Platform.OS === 'ios' ? 'padding' : null}
+			behavior={Constants.platform === 'ios' ? 'padding' : null}
 			style={{ flex: 1 }}
 		>
 			<LinearGradient
@@ -355,7 +357,7 @@ const SignUp = () => {
 					{renderButton()}
 				</ScrollView>
 			</LinearGradient>
-			{renderAreaCodesModal()}
+			{modalVisible ? renderAreaCodesModal() : null}
 		</KeyboardAvoidingView>
 	);
 };
